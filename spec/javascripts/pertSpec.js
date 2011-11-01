@@ -24,7 +24,11 @@ describe("JS PERT library", function() {
     expect(pert.variance(2,7)).toEqual(0.6944444444444445);
   });
 
-  it("estimates a story with no rounding and mean as the estimate mode", function() {
-    expect(pert.estimate("no_rounding", "mean", 1, 3, 7)).toEqual(3.33);
+  it("estimates a story with no rounding and stddev as the estimate mode", function() {
+    expect(pert.estimate("stddev", 1, 1, 2)).toEqual(1.5);
+  });
+
+  it("rounds the estimates to the nearest quarter point", function() {
+    expect(pert.estimate("stddev", 1, 6, 9)).toEqual(8.25);
   });
 });
