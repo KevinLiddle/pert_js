@@ -12,11 +12,11 @@ pert = {
     return (Math.pow(this.standardDeviation(optimistic, pessimistic), 2));
   },
 
-  estimate : function(estimationMode, optimistic, realistic, pessimistic) {
+  estimate : function(estimationMode, roundingStrategy, optimistic, realistic, pessimistic) {
     var mean = this.weightedMean(optimistic, realistic, pessimistic);
     if(estimationMode == "stddev"){
       mean += (this.standardDeviation(optimistic, pessimistic) * 2);
     }
-    return (mean*4).toFixed(0)/4.0;
+    return rounder[roundingStrategy](mean);
   }
 };
